@@ -96,6 +96,8 @@ Please feel free to reach me by email (florianverdonck [at] gmail.com) if you ne
 [GET] `/account/`
 
 Returns the currently "logged in user" details.
+Add param "?includeAPIKey=true" if you want to see the API Key as well.
+**Please be very cautious with this parameter, using it on automation platform might leak your credentials in the history.**
 
 [GET] `/account/collaborators`
 
