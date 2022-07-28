@@ -1,0 +1,4 @@
+*.json
+*.js
+*.har
+node_modules
