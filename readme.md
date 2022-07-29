@@ -5,6 +5,7 @@
 ### What is AirtableToolkit ?
 
 AirtableToolkit is a tools that aims to bring access to all Airtable features through an API.
+It's some sort of unofficial Meta API that Airtable is still working on.
 
 ### How does it work ?
 
@@ -20,6 +21,16 @@ The AirtableToolkit API then uses those cookies to provide you additional featur
 Basically, Airtable itself uses an API for all the actions you do on Airtable.
 Each time you create a field, rename a table or even create an automation, an API call is sent by the Airtable webapp to the Airtable backend.
 We are just providing a "proxy" to this API.
+
+### Use-cases
+
+There a few use-cases we can think of :
+- Backup & Restore Airtable Structure 
+- Backup & Restore Airtable Automations & Apps configuration
+- Create view dynamically (each time a clients is added to the base, add a view filtered on this client and save the link -- basic portal)
+- Bulk rename, format, update fields
+- Base schema versioning
+- ...
 
 ## Technical documentation
 
@@ -67,9 +78,9 @@ It works as a basic string that you can "inject" in your URL and we will automat
 
 **Function :** `*generateId:app*`
 
-**Example endpoint :** `/v0.3/field/***generateId:fld***/create`
+**Example endpoint :** `/v0.3/field/*generateId:fld*/create`
 
-**Resulting endpoint :** `/v0.3/field/**fldfJVP3dsSR6j1su**/create`
+**Resulting endpoint :** `/v0.3/field/fldfJVP3dsSR6j1su/create`
 
 - **Common ID prefixes**
     - app/base : app
@@ -77,6 +88,13 @@ It works as a basic string that you can "inject" in your URL and we will automat
     - field : fld
     - view : viw
     - …
+
+### Limitations
+
+We all ❤️ Airtable. The last thing we want is make Airtable crash.
+That is why I decided to stay very reasonable on the authorized number of calls.
+I implemented an API throttling that is currently limited to 100 calls every 5 minutes, which is 20 calls per minutes.
+It's the load (even less) that is expected from a user using the Airtable web interface.
 
 ### Proxy endpoints
 
